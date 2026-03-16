@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manikanta Vepuri — Quality Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy2: #0f2040;
+  --steel: #1a3a5c;
+  --accent: #00c9a7;
+  --accent2: #0ea5e9;
+  --gold: #f59e0b;
+  --white: #f0f4f8;
+  --muted: #8fa3b8;
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* GRID PATTERN BG */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,201,167,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,201,167,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10,22,40,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-content { max-width: 680px; }
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,201,167,0.1);
+  border: 1px solid rgba(0,201,167,0.3);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+h1 span { color: var(--accent); }
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.hero-sub strong { color: var(--white); font-weight: 500; }
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--navy);
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background: #00e6bf;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--white);
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* QUALITY METRICS STRIP */
+.metrics-strip {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  padding: 2rem;
+}
+
+.metrics-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* SECTIONS */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-tag::after {
+  content: '';
+  flex: 1;
+  max-width: 40px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 3rem;
+  letter-spacing: -0.02em;
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text p {
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+}
+
+.about-text p strong { color: var(--white); }
+
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.highlight-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.highlight-card:hover { border-color: rgba(0,201,167,0.3); }
+
+.highlight-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.highlight-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.highlight-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* EXPERIENCE TIMELINE */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.timeline-group { margin-bottom: 3rem; }
+
+.company-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.company-header::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--navy);
+  box-shadow: 0 0 0 4px rgba(0,201,167,0.2);
+}
+
+.company-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.company-total {
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.role-entry {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.75rem;
+  margin-left: 0.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.role-entry:hover {
+  border-color: rgba(0,201,167,0.3);
+  transform: translateX(4px);
+}
+
+.role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.role-title-exp {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.role-date {
+  font-size: 0.78rem;
+  color: var(--accent);
+  background: rgba(0,201,167,0.1);
+  padding: 3px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.role-bullets {
+  display: none;
+  margin-top: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.role-entry.open .role-bullets { display: block; }
+
+.role-bullet {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.role-bullet::before {
+  content: '▸';
+  color: var(--accent);
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  margin-top: 3px;
+}
+
+.expand-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* SKILLS */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-category {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.skill-cat-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+
+.skill-tag:hover {
+  background: rgba(0,201,167,0.1);
+  border-color: rgba(0,201,167,0.4);
+  color: var(--accent);
+}
+
+.skill-tag.highlight {
+  background: rgba(0,201,167,0.1);
+  border-color: rgba(0,201,167,0.3);
+  color: var(--accent);
+}
+
+/* PROJECTS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.project-card:hover::before { transform: scaleX(1); }
+.project-card:hover { border-color: rgba(0,201,167,0.2); transform: translateY(-4px); }
+
+.project-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.project-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.project-org {
+  font-size: 0.78rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.project-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-tag {
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(14,165,233,0.1);
+  border: 1px solid rgba(14,165,233,0.2);
+  color: var(--accent2);
+}
+
+/* EDUCATION */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.edu-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.edu-card:hover { border-color: rgba(0,201,167,0.3); }
+
+.edu-degree {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.edu-school {
+  font-size: 0.875rem;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.edu-year {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.edu-note {
+  font-size: 0.825rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* SOFT SKILLS */
+.soft-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.soft-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.soft-card:hover {
+  border-color: rgba(0,201,167,0.3);
+  transform: translateY(-2px);
+}
+
+.soft-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+.soft-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.soft-desc { font-size: 0.775rem; color: var(--muted); }
+
+/* CONTACT */
+#contact {
+  text-align: center;
+}
+
+.contact-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-desc {
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.contact-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,201,167,0.1);
+  border: 1px solid rgba(0,201,167,0.3);
+  color: var(--accent);
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.availability-badge::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+
+/* FOOTER */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ANIMATIONS */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .metrics-inner { grid-template-columns: repeat(2, 1fr); }
+  h1 { font-size: 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">MV.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;">
+<section id="hero" style="max-width:100%;margin:0;padding:8rem 2rem 4rem;">
+  <div class="hero-content">
+    <div class="hero-tag">Available for full-time roles · Germany · April 2026</div>
+    <h1>Quality Engineer<br>meets <span>Digital Builder</span></h1>
+    <p class="hero-sub">
+      <strong>3+ years</strong> in automotive foundry quality (IATF 16949) — 4 major process improvements, 7 Kaizen suggestions implemented — then built <strong>3 production digital tools</strong> including a Smart QMS and AI Copilot agent at Erwin Junker. Looking for roles where quality meets Industry 4.0.
+    </p>
+    <div class="hero-btns">
+      <a href="#experience" class="btn-primary">View my work ↓</a>
+      <a href="#contact" class="btn-outline">Get in touch</a>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- METRICS -->
+<div class="metrics-strip">
+  <div class="metrics-inner">
+    <div class="metric fade-in">
+      <div class="metric-num">4</div>
+      <div class="metric-label">Major process improvements led</div>
+    </div>
+    <div class="metric fade-in" style="transition-delay:0.1s">
+      <div class="metric-num">7</div>
+      <div class="metric-label">Kaizen suggestions implemented</div>
+    </div>
+    <div class="metric fade-in" style="transition-delay:0.2s">
+      <div class="metric-num">3</div>
+      <div class="metric-label">Digital QM systems built</div>
+    </div>
+    <div class="metric fade-in" style="transition-delay:0.3s">
+      <div class="metric-num">3</div>
+      <div class="metric-label">Languages in multilingual app</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">About me</div>
+  <h2>Quality is not a department.<br>It's a <span style="color:var(--accent)">mindset.</span></h2>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I started on the foundry floor — inspecting every core, every melt, every pour at an IATF 16949 automotive casting plant supplying <strong>BorgWarner, Renault, and Daimler</strong>. I learned that quality is built in, not inspected out.</p>
+      <p>After three years growing from intern to shift team leader at <strong>Greentech Industries India</strong>, I came to Germany to understand how quality works at the next level. At <strong>Erwin Junker Maschinenfabrik</strong>, I didn't just study digitalization — I built it. A full Smart QMS prototype, from blank canvas to real production validation.</p>
+      <p>My goal is to work where <strong>precision manufacturing meets digital transformation</strong> — helping companies move from paper-based quality to intelligent, traceable, audit-ready systems. Eventually, I want to build quality management tools that small manufacturers can actually afford and use.</p>
+      <p style="margin-top:1.5rem;">
+        <strong>Languages:</strong> English (C1) · German (B2) · Telugu (Native) · Hindi
+      </p>
+    </div>
+    <div class="about-highlights fade-in" style="transition-delay:0.15s">
+      <div class="highlight-card">
+        <div class="highlight-icon">🏭</div>
+        <div class="highlight-title">Foundry Quality Background</div>
+        <div class="highlight-desc">Core Shop, Melting, Moulding — hands-on in every process from incoming inspection to final casting verification</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">⚡</div>
+        <div class="highlight-title">Low-Code Builder</div>
+        <div class="highlight-desc">Built production-grade Power Apps used across Germany and Czech Republic — multilingual, role-based, fully automated</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🎯</div>
+        <div class="highlight-title">Automotive Standards</div>
+        <div class="highlight-desc">IATF 16949, ISO 9001, ISO 14001, VDA 6.3, VDA 6.4 — worked under all of them, not just studied them</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🚀</div>
+        <div class="highlight-title">AI QMS Vision</div>
+        <div class="highlight-desc">Working toward intelligent quality systems — where tolerance checks, audit trails, and corrective actions run themselves</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag">Career</div>
+  <h2>From foundry floor<br>to <span style="color:var(--accent)">digital quality.</span></h2>
+
+  <div class="timeline">
+
+    <!-- JUNKER -->
+    <div class="timeline-group fade-in">
+      <div class="company-header">
+        <div class="company-name">Erwin Junker Maschinenfabrik GmbH</div>
+        <div class="company-total">1 yr 1 mo · Nordrach, Germany</div>
+      </div>
+
+      <div class="role-entry" onclick="toggleRole(this)">
+        <div class="role-header">
+          <div class="role-title-exp">Werkstudent — QM & Digitalization</div>
+          <div class="role-date">Sep 2025 – Mar 2026</div>
+        </div>
+        <div class="expand-hint">Click to expand</div>
+        <div class="role-bullets">
+          <div class="role-bullet">Built Audit & Corrective Action Management App in 3 languages (DE/EN/Czech) — deployed across Germany and Czech Republic sites with real feedback loops from both teams.</div>
+          <div class="role-bullet">Built AI Copilot Studio agent trained on QM standards and terminology — enabling the QM team to query internal procedures conversationally instead of searching through documents.</div>
+          <div class="role-bullet">Supported ISO 14001 environmental audit and EcoVadis sustainability assessment — collecting proofs, organizing policy submissions, verifying documentation completeness.</div>
+          <div class="role-bullet">Migrated quality process documentation from Confluence to SharePoint; wrote full user guides for all MS365 tools developed.</div>
+        </div>
+      </div>
+
+      <div class="role-entry" onclick="toggleRole(this)">
+        <div class="role-header">
+          <div class="role-title-exp">Masterand — QM & Digitalization</div>
+          <div class="role-date">Mar 2025 – Sep 2025</div>
+        </div>
+        <div class="expand-hint">Click to expand</div>
+        <div class="role-bullets">
+          <div class="role-bullet">Built Smart QMS prototype (Power Apps + Power Automate + SharePoint) replacing paper-based inspection folders across 5-phase custom machine production process.</div>
+          <div class="role-bullet">Designed 2 user interfaces, 4 automation flows, 6 relational SharePoint lists — validated on real production machine (JUMAT, #10949) with live inspection documents.</div>
+          <div class="role-bullet">Benchmarked Power Platform vs SAP QM — presented implementation roadmap for manufacturing SMEs. Thesis grade confirmed by Dr. Falko Gotsch, Head of QM.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GREENTECH -->
+    <div class="timeline-group fade-in" style="transition-delay:0.1s">
+      <div class="company-header">
+        <div class="company-name">Greentech Industries India Pvt. Ltd.</div>
+        <div class="company-total">3 yrs 7 mos · Naidupeta, India</div>
+      </div>
+
+      <div class="role-entry" onclick="toggleRole(this)">
+        <div class="role-header">
+          <div class="role-title-exp">Quality Control Team Leader – Shift</div>
+          <div class="role-date">Feb 2023 – Sep 2023</div>
+        </div>
+        <div class="expand-hint">Click to expand</div>
+        <div class="role-bullets">
+          <div class="role-bullet">Led 5-person QC shift team; responsible for quality and process control across Core Shop, Melting, and Moulding — supplying BorgWarner, Renault, Daimler.</div>
+          <div class="role-bullet">Owned customer complaint resolution end-to-end using 8D, Ishikawa, 5-Why — from containment through verified corrective action closure.</div>
+          <div class="role-bullet">Conducted VDA 6.3 process audits and operator training; proactively identified process deviations before they reached customers.</div>
+        </div>
+      </div>
+
+      <div class="role-entry" onclick="toggleRole(this)">
+        <div class="role-header">
+          <div class="role-title-exp">Quality Engineer</div>
+          <div class="role-date">Mar 2022 – Feb 2023</div>
+        </div>
+        <div class="expand-hint">Click to expand</div>
+        <div class="role-bullets">
+          <div class="role-bullet">Reduced scrap and rework by ~80% through FMEA-driven process improvements; improved throughput from 22 to 28 heats per shift over 12 months.</div>
+          <div class="role-bullet">Led PPAP and APQP for new and revised parts; developed Process FMEAs, Control Plans, Work Instructions.</div>
+          <div class="role-bullet">Drove 5S, Kaizen, and lean initiatives; conducted internal audits per ISO 9001:2015 and IATF 16949:2016.</div>
+        </div>
+      </div>
+
+      <div class="role-entry" onclick="toggleRole(this)">
+        <div class="role-header">
+          <div class="role-title-exp">Graduate Engineer Trainee – Quality</div>
+          <div class="role-date">Sep 2020 – Mar 2022</div>
+        </div>
+        <div class="expand-hint">Click to expand</div>
+        <div class="role-bullets">
+          <div class="role-bullet">Inspected core quality (colour, weight, dimensions, coating), monitored sand mixture conformance, sampled and documented molten metal by part number.</div>
+          <div class="role-bullet">Verified BOM and melting conditions; confirmed chemical composition via spectrometric analysis; maintained detailed process records for every heat.</div>
+        </div>
+      </div>
+
+      <div class="role-entry" onclick="toggleRole(this)">
+        <div class="role-header">
+          <div class="role-title-exp">Quality Control Intern</div>
+          <div class="role-date">Dec 2019 – Jun 2020</div>
+        </div>
+        <div class="expand-hint">Click to expand</div>
+        <div class="role-bullets">
+          <div class="role-bullet">Performed NDT testing: Liquid Penetrant Testing, Ultrasonic Testing, X-ray inspection; conducted tensile strength testing and spectrometric analysis.</div>
+          <div class="role-bullet">Prepared metallurgical samples for microstructure analysis; supported 5S and shop floor quality activities. Led directly to full-time offer on graduation.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">Skills</div>
+  <h2>Technical <span style="color:var(--accent)">& human.</span></h2>
+
+  <div class="skills-grid">
+    <div class="skill-category fade-in">
+      <div class="skill-cat-title">⚙️ Quality & Automotive</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">IATF 16949</span>
+        <span class="skill-tag highlight">ISO 9001:2015</span>
+        <span class="skill-tag">VDA 6.3</span>
+        <span class="skill-tag">VDA 6.4</span>
+        <span class="skill-tag highlight">FMEA</span>
+        <span class="skill-tag">APQP</span>
+        <span class="skill-tag">PPAP</span>
+        <span class="skill-tag">8D Problem Solving</span>
+        <span class="skill-tag">Root Cause Analysis</span>
+        <span class="skill-tag">Control Plans</span>
+        <span class="skill-tag">Customer Complaints</span>
+        <span class="skill-tag">Internal Audits</span>
+      </div>
+    </div>
+
+    <div class="skill-category fade-in" style="transition-delay:0.1s">
+      <div class="skill-cat-title">💻 Digital & Low-Code</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Microsoft Power Apps</span>
+        <span class="skill-tag highlight">Power Automate</span>
+        <span class="skill-tag highlight">SharePoint</span>
+        <span class="skill-tag">Microsoft Copilot Studio</span>
+        <span class="skill-tag">ISO 14001</span>
+        <span class="skill-tag">EcoVadis</span>
+        <span class="skill-tag">Digital QMS</span>
+        <span class="skill-tag">SAP QM</span>
+        <span class="skill-tag">Low-Code Development</span>
+        <span class="skill-tag">Process Digitalization</span>
+      </div>
+    </div>
+
+    <div class="skill-category fade-in" style="transition-delay:0.2s">
+      <div class="skill-cat-title">🔬 Testing & Inspection</div>
+      <div class="skill-tags">
+        <span class="skill-tag">NDT Testing</span>
+        <span class="skill-tag">Liquid Penetrant Testing</span>
+        <span class="skill-tag">X-Ray Inspection</span>
+        <span class="skill-tag">Tensile Strength Testing</span>
+        <span class="skill-tag">Spectrometric Analysis</span>
+        <span class="skill-tag">Metallurgical Analysis</span>
+        <span class="skill-tag">In-Process Inspection</span>
+        <span class="skill-tag">Foundry & Casting</span>
+        <span class="skill-tag">Microstructure Analysis</span>
+      </div>
+    </div>
+
+    <div class="skill-category fade-in" style="transition-delay:0.3s">
+      <div class="skill-cat-title">🌍 Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">English C1</span>
+        <span class="skill-tag highlight">German B2</span>
+        <span class="skill-tag">Telugu (Native)</span>
+        <span class="skill-tag">Hindi</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="soft-skills-grid" style="margin-top:3rem;">
+    <div class="soft-card fade-in">
+      <div class="soft-icon">🎯</div>
+      <div class="soft-name">Precision mindset</div>
+      <div class="soft-desc">Zero tolerance for ambiguity in specs, processes, or documentation</div>
+    </div>
+    <div class="soft-card fade-in" style="transition-delay:0.05s">
+      <div class="soft-icon">🔄</div>
+      <div class="soft-name">Lean thinking</div>
+      <div class="soft-desc">Always asking what step can be removed, simplified, or automated</div>
+    </div>
+    <div class="soft-card fade-in" style="transition-delay:0.1s">
+      <div class="soft-icon">🤝</div>
+      <div class="soft-name">Cross-cultural teamwork</div>
+      <div class="soft-desc">Worked with German, Czech, and Indian teams — built tools for all three</div>
+    </div>
+    <div class="soft-card fade-in" style="transition-delay:0.15s">
+      <div class="soft-icon">📐</div>
+      <div class="soft-name">Structured problem solving</div>
+      <div class="soft-desc">8D, 5-Why, Ishikawa — used in real customer complaint situations</div>
+    </div>
+    <div class="soft-card fade-in" style="transition-delay:0.2s">
+      <div class="soft-icon">⚡</div>
+      <div class="soft-name">Self-driven builder</div>
+      <div class="soft-desc">Designed and shipped full apps independently — no IT team, no templates</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-tag">Projects</div>
+  <h2>Things I've <span style="color:var(--accent)">built.</span></h2>
+
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <div class="project-icon">🧠</div>
+      <div class="project-title">Smart QMS — Digital Quality Documentation System</div>
+      <div class="project-org">Erwin Junker Maschinenfabrik · Master Thesis · 2025</div>
+      <div class="project-desc">Replaced Junker's paper-based quality folders with a fully digital inspection system for production. Role-based Power Apps frontend, 6 SharePoint lists as backend, 4 Power Automate flows including real-time out-of-tolerance email alerts. Validated on live production machine with real technicians — confirmed usable without training.</div>
+      <div class="project-tags">
+        <span class="project-tag">Power Apps</span>
+        <span class="project-tag">Power Automate</span>
+        <span class="project-tag">SharePoint</span>
+        <span class="project-tag">ISO 9001</span>
+        <span class="project-tag">VDA 6.4</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in" style="transition-delay:0.1s">
+      <div class="project-icon">🌍</div>
+      <div class="project-title">Audit & Corrective Action Management App</div>
+      <div class="project-org">Erwin Junker Maschinenfabrik · Werkstudent · 2025–26</div>
+      <div class="project-desc">Built end-to-end audit finding and corrective action tracking app in German, English, and Czech — covering full lifecycle from creation through follow-up and closure. Deployed across Germany and Czech Republic sites with real feedback from both teams iterated into the final version.</div>
+      <div class="project-tags">
+        <span class="project-tag">Power Apps</span>
+        <span class="project-tag">3 Languages</span>
+        <span class="project-tag">Multi-site</span>
+        <span class="project-tag">Audit Management</span>
+        <span class="project-tag">Power Automate</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in" style="transition-delay:0.2s">
+      <div class="project-icon">🤖</div>
+      <div class="project-title">AI Copilot Agent for QM Standards</div>
+      <div class="project-org">Erwin Junker Maschinenfabrik · Werkstudent · 2025–26</div>
+      <div class="project-desc">Built a Microsoft Copilot Studio AI agent trained on Junker's quality management standards and terminology — enabling the QM team to query internal standards, procedures, and guidelines conversationally instead of manually searching through documentation.</div>
+      <div class="project-tags">
+        <span class="project-tag">Copilot Studio</span>
+        <span class="project-tag">AI Agent</span>
+        <span class="project-tag">QM Standards</span>
+        <span class="project-tag">Knowledge Base</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in" style="transition-delay:0.3s">
+      <div class="project-icon">🏎️</div>
+      <div class="project-title">Go-Kart Racing — Engineering Project</div>
+      <div class="project-org">Vignan's University · B.Tech · 2018–2020</div>
+      <div class="project-desc">Participated in go-kart design and racing competition as part of university engineering project — hands-on mechanical design, fabrication, and performance testing under real racing conditions.</div>
+      <div class="project-tags">
+        <span class="project-tag">Mechanical Design</span>
+        <span class="project-tag">Fabrication</span>
+        <span class="project-tag">Testing</span>
+        <span class="project-tag">Teamwork</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-tag">Education</div>
+  <h2>Built on solid <span style="color:var(--accent)">foundations.</span></h2>
+
+  <div class="edu-grid">
+    <div class="edu-card fade-in">
+      <div class="edu-degree">M.Sc. International Technology Transfer Management</div>
+      <div class="edu-school">bbw Hochschule Berlin</div>
+      <div class="edu-year">Oct 2023 – Mar 2026</div>
+      <div class="edu-note">Thesis: "Digitalization: Potential Analysis and Implementation of MS365 Tools for Managing Quality Records in Production" — supervised by Prof. Dr.-Ing. Uwe Kaschka and Dr. Falko Gotsch (Junker Group).</div>
+    </div>
+
+    <div class="edu-card fade-in" style="transition-delay:0.1s">
+      <div class="edu-degree">B.Tech Mechanical Engineering</div>
+      <div class="edu-school">Vignan's Foundation for Science, Technology & Research</div>
+      <div class="edu-year">2016 – 2020 · Guntur, India</div>
+      <div class="edu-note">Mechanical engineering fundamentals — materials, manufacturing processes, thermodynamics, and design. Participated in go-kart racing competition as applied engineering project.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag" style="justify-content:center;">Contact</div>
+  <h2>Let's build something<br><span style="color:var(--accent)">precise.</span></h2>
+  <div class="contact-inner">
+    <p class="contact-desc">I am available for full-time Quality Engineer, Industrial Engineer, or Digital QM roles anywhere in Germany from April 2026. Open to relocation.</p>
+
+    <div class="contact-links">
+      <a href="mailto:vepurimanikanta23@gmail.com" class="contact-link">
+        <span>✉</span> vepurimanikanta23@gmail.com
+      </a>
+      <a href="tel:+4917674507933" class="contact-link">
+        <span>📞</span> +49 176 74507933
+      </a>
+      <a href="https://linkedin.com/in/vepuri-mani" target="_blank" class="contact-link">
+        <span>in</span> linkedin.com/in/vepuri-mani
+      </a>
+    </div>
+
+    <div class="availability-badge">
+      Available from April 2026 · Job-Seeker Visa · Germany-wide
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Manikanta Vepuri · Quality Engineer · Germany · 2026</p>
+</footer>
+
+<script>
+function toggleRole(el) {
+  el.classList.toggle('open');
+  const hint = el.querySelector('.expand-hint');
+  hint.textContent = el.classList.contains('open') ? 'Click to collapse' : 'Click to expand';
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
