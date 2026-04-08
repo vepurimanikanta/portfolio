@@ -64,37 +64,12 @@ textarea.ti:focus{border-color:#673ab7}
 .oi{display:flex;align-items:center;gap:6px}
 .oi .ti{flex:1;width:auto}
 
-/* SETUP BANNER */
-.setup{background:#fff3e0;border:2px dashed #ff9800;border-radius:8px;padding:16px;margin-bottom:12px;font-size:12px;line-height:1.7;color:#e65100}
-.setup h3{font-size:14px;margin-bottom:6px;color:#bf360c}
-.setup code{background:#fff;padding:2px 6px;border-radius:3px;font-size:11px;word-break:break-all}
-.setup ol{padding-left:18px}
-.setup li{margin-bottom:4px}
-.setup .done-btn{background:#4caf50;color:#fff;border:none;padding:6px 14px;border-radius:4px;font-size:12px;cursor:pointer;margin-top:8px}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="progress"><div class="progress-fill" id="pbar" style="width:0%"></div></div>
 
-<!-- SETUP BANNER - shows only when URL not set -->
-<div class="setup" id="setupBanner">
-<h3>⚠️ One-time Setup: Connect Google Sheets</h3>
-<ol>
-<li>Open <a href="https://sheets.google.com" target="_blank">sheets.google.com</a> → Create blank sheet</li>
-<li>Name it <b>Kitchen Hood Survey</b></li>
-<li>In Row 1, paste these headers:<br><code>Timestamp&emsp;Q1_Smoke&emsp;Q2_When&emsp;Q3_Current&emsp;Q4_Interest&emsp;Q5_Price&emsp;Q5_Custom&emsp;Q6_Important&emsp;Q7_Features&emsp;Name&emsp;Phone&emsp;City</code></li>
-<li>Click <b>Extensions → Apps Script</b></li>
-<li>Delete all code, paste the script from <b>google-apps-script.js</b></li>
-<li>Click <b>Deploy → New deployment → Web app → Anyone → Deploy</b></li>
-<li>Copy the URL and paste below:</li>
-</ol>
-<div style="display:flex;gap:8px;margin-top:8px">
-<input type="text" id="scriptUrl" placeholder="Paste your Google Script URL here..." style="flex:1;padding:8px;border:1px solid #ccc;border-radius:4px;font-size:12px">
-<button class="done-btn" onclick="saveUrl()">Save & Start</button>
-</div>
-<p style="margin-top:8px;font-size:11px;color:#999">This banner disappears after you save the URL. Your URL is saved in browser.</p>
-</div>
 
 <div class="bar"></div>
 <div class="hdr">
@@ -217,27 +192,7 @@ textarea.ti:focus{border-color:#673ab7}
 </div>
 
 <script>
-var URL_KEY='kh_survey_url';
-var SCRIPT_URL=localStorage.getItem(URL_KEY)||'';
-
-function init(){
-  if(SCRIPT_URL&&SCRIPT_URL.length>10){
-    document.getElementById('setupBanner').style.display='none';
-  }
-}
-init();
-
-function saveUrl(){
-  var v=document.getElementById('scriptUrl').value.trim();
-  if(!v||!v.startsWith('https://script.google.com')){
-    alert('Please paste a valid Google Apps Script URL starting with https://script.google.com/...');
-    return;
-  }
-  localStorage.setItem(URL_KEY,v);
-  SCRIPT_URL=v;
-  document.getElementById('setupBanner').style.display='none';
-  alert('Connected! Your form is now live and will save responses to Google Sheets.');
-}
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbzDM1rc68HDQagd6AxxmjxGxtm_UVaIFK8gVGTGCW0lwCQOsBU3zLCAaOM6wEAh1T2o/exec';
 
 function ac(el){document.querySelectorAll('.c').forEach(function(c){c.classList.remove('on')});el.classList.add('on')}
 
@@ -284,13 +239,6 @@ function sub(e){
     city:d.city||''
   };
 
-  if(!SCRIPT_URL||SCRIPT_URL.length<10){
-    console.log('Response (no Sheet connected):',payload);
-    console.table(payload);
-    ok();
-    return false;
-  }
-
   fetch(SCRIPT_URL,{
     method:'POST',
     mode:'no-cors',
@@ -310,7 +258,7 @@ function sub(e){
 
 function ok(){
   document.getElementById('sf').style.display='none';
-  document.querySelectorAll('.sec,.emo,.img,.setup').forEach(function(s){s.style.display='none'});
+  document.querySelectorAll('.sec,.emo,.img').forEach(function(s){s.style.display='none'});
   document.getElementById('pbar').style.width='100%';
   document.getElementById('okScreen').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
